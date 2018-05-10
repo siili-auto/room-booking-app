@@ -46,7 +46,7 @@ application with provided config.
 
 ## Prerequisites
 
-Make sure you have **Node v8.5.0** installed (preferred way is to use
+Make sure you have **Node v8.11.1** installed (preferred way is to use
 [NVM](https://github.com/creationix/nvm))
 
 ## Installation
@@ -64,7 +64,7 @@ $ npm init -y
 Then install CLI:
 
 ```
-$ npm install --save git+ssh://git@gitlab.siilicloud.com:siili-pl-cba/rba.git
+$ yarn add room-booking-app
 ```
 
 ## CLI Usage
