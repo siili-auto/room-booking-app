@@ -1,0 +1,46 @@
+$color-brand: #03a9f4 !default;
+$font-family: null !default;
+$font-weight-lighter: 300 !default;
+$font-weight-bolder: 500 !default;
+$rounded-icons: false !default;
+
+$color-black: #000;
+$color-dark-gray: #444;
+$color-gray: #999;
+$color-medium-gray: #ddd;
+$color-light-gray: #f1f1f1;
+$color-white: #fff;
+
+$font-family-default: 'Roboto';
+
+@if ($font-family == null) {
+    $font-family: #{$font-family-default}, Helvetica, Arial, sans-serif;
+    @import url('//fonts.googleapis.com/css?family=#{$font-family-default}:#{$font-weight-lighter},#{$font-weight-bolder}');
+}
+
+$alpha: .85;
+$alpha-small: .35;
+
+$color-brand-translucent: rgba($color-brand, $alpha);
+$color-black-translucent: rgba($color-black, $alpha);
+$color-white-translucent: rgba($color-white, $alpha);
+$color-white-translucent-light: rgba($color-white, $alpha-small);
+
+$easing: cubic-bezier(.26, .08, .32, .89);
+$easing-in-back: cubic-bezier(.68, -.075, .86, .17);
+$easing-bounce: cubic-bezier(.175, .885, .32, 1.075);
+
+$border-radius: 4px;
+
+$shadow-small: 0 0 10px rgba($color-black, .1);
+$shadow-large: 0 0 25px rgba($color-black, .3);
+
+$transition-rooms-change: .3s $easing;
+
+$transition-progress-bar-show: .2s $easing;
+$transition-progress-update: .4s $easing;
+
+$transition-button-show: .5s $easing-bounce .1s;
+$transition-button-content-change: .3s $easing;
+
+$transition-item-slide: .3s $easing;

@@ -1,0 +1,44 @@
+$transition-agenda-events: .2s $easing;
+
+.agenda {
+    position: relative;
+    height: 100%;
+    padding: 30px;
+    transition: transform $transition-rooms-change;
+    background-color: $color-light-gray;
+    color: $color-black;
+    will-change: transform;
+
+    &__empty {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        width: 300px;
+        height: 200px;
+        margin-top: -100px;
+        margin-left: -150px;
+        font-size: 1.9em;
+        line-height: 1.4em;
+        text-align: center;
+    }
+
+    &__events {
+        transition: transform $transition-agenda-events;
+        will-change: transform;
+    }
+
+    &--visible {
+        transform: translate3d(0, -50vh, 0) translate3d(0, 350px, 0);
+
+        &.agenda--single { transform: translate3d(0, -100vh, 0) translate3d(0, 375px, 0); }
+    }
+
+    &--pushed {
+        .agenda__events {
+            transform: translate3d(0, 120px, 0);
+            opacity: .4;
+        }
+    }
+
+}
+

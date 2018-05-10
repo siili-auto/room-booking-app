@@ -1,0 +1,66 @@
+.main {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+    background-color: $color-dark-gray;
+
+    &__rooms {
+        position: relative;
+        top: 50px;
+        width: 100%;
+        height: calc(100% - 50px);
+    }
+
+    &__room {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        transition: $transition-rooms-change;
+        will-change: transform;
+
+        &--first {
+            top: 0;
+            transform-origin: center top;
+
+            .room__overlay { bottom: -50px; }
+        }
+
+        &--second {
+            top: 50%;
+
+            .room__overlay { top: 0; }
+
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 2px;
+                background-color: $color-white-translucent;
+            }
+        }
+    }
+}
+
+.main__rooms {
+    &--first-active {
+        .main__room--second {
+            transform: translate3d(0, 50vh, 0);
+        }
+    }
+
+    &--second-active {
+        .main__room--first {
+            transform: translate3d(0, -40vh, 0);
+        }
+
+        .main__room--second {
+            transform: translate3d(0, -50vh, 0) translate3d(0, 25px, 0);
+
+            &::after { display: none; }
+        }
+    }
+}

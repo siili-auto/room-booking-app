@@ -1,0 +1,185 @@
+$padding: 40px;
+$transition-summary-content: .4s $easing;
+$transition-summary-content-name: .2s $easing;
+
+.room-summary {
+    position: relative;
+    height: 50%;
+    overflow: hidden;
+    background-color: $color-black;
+    color: $color-white;
+
+    &__wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: transform $transition-rooms-change;
+        will-change: transform;
+    }
+
+    &__photo,
+    &__tint,
+    &__name,
+    &__event {
+        position: absolute;
+    }
+
+    &__photo,
+    &__tint {
+        top: 0;
+    }
+
+    &__photo {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-origin: 50% 0;
+        transition: transform $transition-summary-content;
+        will-change: transform;
+        object-fit: cover;
+    }
+
+    &__tint {
+        width: 100%;
+        height: 100%;
+        background-color: $color-brand-translucent;
+    }
+
+    &__name {
+        position: absolute;
+        top: $padding + 10px;
+        transition: transform $transition-summary-content;
+        font-size: 50px;
+        font-weight: bold;
+        will-change: transform;
+    }
+
+    &__event {
+        z-index: 3;
+        bottom: $padding;
+        font-size: 2rem;
+    }
+
+    &-event {
+        &__title {
+            max-height: 10rem;
+            margin-bottom: .3em;
+            overflow: hidden;
+            transform: translateZ(0);
+            font-size: 2.5rem;
+            font-weight: $font-weight-bolder;
+            word-break: break-all;
+        }
+
+        &__subtitle,
+        &__description {
+            transform: translateZ(0);
+            font-size: 1.5rem;
+        }
+
+        &__description {
+            padding-top: .2em;
+        }
+
+        &__progress-bar {
+            height: calc(.6em + 5px);
+            padding-bottom: .6em;
+            overflow: hidden;
+            transform: scaleY(1);
+            transition: transform $transition-progress-bar-show;
+            will-change: transform;
+        }
+
+        &__progress-duration,
+        &__progress {
+            height: 5px;
+            transform: translate3d(0, 0, 0);
+            border-radius: 4px;
+        }
+
+        &__progress-duration {
+            width: 100%;
+            overflow: hidden;
+            background-color: $color-white-translucent-light;
+        }
+
+        &__progress {
+            width: 10%;
+            transition: width $transition-progress-update;
+            background-color: $color-white;
+        }
+    }
+
+    &--free {
+        .room-summary__tint {
+            display: none;
+        }
+
+        .room-summary__photo {
+            opacity: .4;
+        }
+
+        .room-summary-event__progress-bar {
+            transform: scaleY(0);
+        }
+    }
+
+    &--compact {
+        .room-summary__wrapper {
+            transform: translate3d(0, -50vh, 0) translate3d(0, 350px, 0);
+        }
+
+        .room-summary__photo {
+            transform: scale(1.3);
+        }
+
+        .room-summary-event__progress-bar {
+            transform: scaleY(0);
+        }
+    }
+
+    &--fullscreen {
+        height: 100%;
+
+        &.room-summary--compact {
+            .room-summary__wrapper {
+                transform: translate3d(0, -100vh, 0) translate3d(0, 375px, 0);
+            }
+
+            .room-summary__photo {
+                transform: translate3d(0, 50vh, 0) scale(1.3);
+            }
+        }
+    }
+
+    &--left {
+        .room-summary__name,
+        .room-summary__event {
+            left: $padding + 10px;
+        }
+
+        .room-summary__event {
+            text-align: left;
+        }
+
+        .room-summary-event__title {
+            padding-right: 150px;
+        }
+    }
+
+    &--right {
+        .room-summary__name,
+        .room-summary__event {
+            right: $padding + 10px;
+        }
+
+        .room-summary__event {
+            text-align: right;
+        }
+
+        .room-summary-event__title {
+            padding-left: 150px;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+  "assetsDir": "demo-config/assets",
+  "sassPath": "demo-config/styles.scss",
+  "mockedApi": true,
+  "maxEndTime": "20:00"
+}

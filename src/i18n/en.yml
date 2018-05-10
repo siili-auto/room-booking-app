@@ -1,0 +1,31 @@
+---
+translations:
+  configurator-confirm-button: Ok
+  dialog-cancel: Cancel
+  dialog-ok: Ok
+  error-dismiss-button: Dismiss
+  error-message-template: Sorry, but we have a problem. %{error}Please try again.
+  error-title: Ooops...
+  event-coming-up: Coming up in %{time}
+  event-in-progress: Currently in progress
+  event-quick: Quick meeting
+  event-reservation-by: '%{timeRange} by %{person}'
+  event-time-left: '%{time} left'
+  event-time-max: Max
+  event-time-range: From %{start} to %{end}
+  event-time-until-end-of-day: until end of day
+  event-time-until: until %{time}
+  go-back: Go back
+  loader-text: Loading data...
+  room-available-till-end-of-day: This room is available till the end of day!
+  room-available: Available
+  room-book-for-time: Book for
+  room-booking-encouragement: Go ahead and book this room now!
+  room-booking-in-progress: Booking in progress
+  room-then-available: Then available %{time}
+  room-vacant: Vacant %{time}
+  terminate-button: Terminate
+  terminate-confirm: Do you want to cancel your quick meeting in %{name}?
+  terminate-modal-title: Terminate meeting
+  time-unit-hour: hour |||| hours
+  time-unit-minute: minute |||| minutes

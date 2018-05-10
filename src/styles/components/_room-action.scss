@@ -1,0 +1,218 @@
+$transition-action-durations-show: .4s $easing-bounce;
+
+.room-action {
+    position: absolute;
+    z-index: 200;
+    top: 270px;
+    width: 100px;
+    height: 100px;
+
+    &__button {
+        display: flex;
+        z-index: 201;
+        top: 0;
+        left: 0;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        transform: scale(0);
+        transform-origin: 50% 50%;
+        transition: transform $transition-button-show;
+        border-radius: 100%;
+        opacity: 0;
+        background-color: $color-brand;
+        box-shadow: $shadow-small;
+        will-change: transform;
+    }
+
+    &__button-caption {
+        $plus-size: 40px;
+        $plus-stroke-width: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $plus-size;
+        height: $plus-size;
+        transform: scale(1);
+        transform-origin: 50% 50%;
+        transition: transform $transition-button-content-change, opacity $transition-button-content-change;
+        will-change: transform, opacity;
+
+        &::before,
+        &::after {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            left: $plus-size/2 - $plus-stroke-width/2;
+            width: $plus-stroke-width;
+            height: 100%;
+            background-color: $color-white;
+
+            @if ($rounded-icons) {
+                border-radius: $plus-stroke-width;
+            }
+        }
+
+        &::after {
+            transform: rotate(90deg);
+        }
+    }
+
+    &__button-spinner {
+        display: block;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        transition: opacity $transition-button-content-change;
+        border: 7px solid transparent;
+        border-radius: 100%;
+        border-top-color: $color-white;
+        opacity: 0;
+        will-change: opacity;
+    }
+
+    &__new-event {
+        display: flex;
+        visibility: hidden;
+        position: absolute;
+        z-index: 150;
+        top: 130px;
+        flex-wrap: nowrap;
+        width: calc(100vw - 60px);
+        height: 100px;
+        padding: 25px;
+        overflow: hidden;
+        transform: scale(0);
+        transition: transform $transition-action-durations-show;
+        border-radius: $border-radius;
+        opacity: 0;
+        background-color: $color-white;
+        box-shadow: $shadow-large;
+        will-change: transform;
+    }
+
+    &__new-event-label {
+        flex-grow: 0;
+        height: 3.3rem;
+        margin-right: 10px;
+        overflow: hidden;
+        transform: translate3d(-200px, 0, 0);
+        transition: transform $transition-item-slide;
+        transition-delay: .2s;
+        opacity: 0;
+        color: $color-black;
+        font-size: 2rem;
+        font-weight: $font-weight-bolder;
+        line-height: 3.3rem;
+        will-change: transform;
+    }
+
+    &__new-event-durations {
+        flex-grow: 1;
+        padding: 0;
+    }
+
+    &__duration {
+        padding: 0 14px;
+        float: left;
+        transform: translate3d(0, 100px, 0);
+        transition: transform $transition-item-slide;
+        border-left: 2px solid $color-medium-gray;
+        font-size: 1.1rem;
+        will-change: transform;
+
+        &:first-of-type {
+            border-left: 0;
+        }
+
+        &-time {
+            color: $color-brand;
+            font-size: 1.5em;
+        }
+
+        &-unit {
+            color: $color-dark-gray;
+            font-size: .9em;
+        }
+
+        &--disabled {
+            opacity: .5;
+
+            .room-action__duration-time { color: $color-gray; }
+        }
+
+    }
+
+    &--left {
+        right: 40px;
+
+        .room-action__new-event {
+            right: -10px;
+        }
+    }
+
+    &--right {
+        left: 40px;
+
+        .room-action__new-event {
+            left: -10px;
+        }
+    }
+
+    &--enabled {
+        .room-action__button {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    &--active {
+        .room-action__button {
+            box-shadow: $shadow-large;
+        }
+
+        .room-action__button-caption {
+            transform: rotate(225deg) scale(1);
+        }
+
+        .room-action__duration {
+            transform: translate3d(0, 0, 0);
+
+            &--item1 { transition-delay: .35s; }
+            &--item2 { transition-delay: .4s; }
+            &--item3 { transition-delay: .45s; }
+            &--item4 { transition-delay: .5s; }
+            &--item5 { transition-delay: .55s; }
+            &--item6 { transition-delay: .6s; }
+        }
+
+        .room-action__new-event-label {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+
+        .room-action__new-event {
+            visibility: visible;
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    &--in-progress {
+        .room-action__button-caption {
+            transform: scale(0) rotate(360deg);
+            opacity: 0;
+        }
+
+        .room-action__button-spinner {
+            animation: spinner .5s linear infinite;
+            opacity: 1;
+        }
+
+        .room-action__new-event-label {
+            width: 70%;
+        }
+    }
+}

@@ -1,0 +1,164 @@
+$transition-agenda-event-show: .4s $easing-bounce;
+$transition-agenda-event-hide: .4s $easing-in-back;
+
+.agenda-event {
+    @include clearfix;
+    position: relative;
+    height: 100px;
+    margin: 15px 0;
+    padding: 25px;
+    overflow: hidden;
+    border-radius: $border-radius;
+    background-color: $color-white;
+    box-shadow: $shadow-small;
+
+    &:first-child { margin-top: 5px; }
+
+    &.agenda__transition {
+        &-enter {
+            transform: scale(0);
+            transition: transform $transition-agenda-event-show;
+
+            &.agenda__transition-enter-active {
+                transform: scale(1);
+            }
+        }
+
+        &-leave {
+            transform: scale(1);
+            transition: transform $transition-agenda-event-hide;
+
+            &.agenda__transition-leave-active {
+                transform: scale(0);
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        position: absolute;
+        left: 30px;
+        align-items: stretch;
+        width: calc(100% - 30px);
+        height: calc(100% - 50px);
+    }
+
+    &__time,
+    &__description {
+        float: left;
+        font-size: 1.1rem;
+    }
+
+    &__time {
+        width: 12%;
+        padding-right: 20px;
+        border-right: 2px solid $color-medium-gray;
+        text-align: right;
+
+        &-start {
+            font-size: 1.5em;
+        }
+
+        &-end {
+            color: $color-gray;
+            font-size: .9em;
+        }
+    }
+
+    &__description {
+        width: 80%;
+        padding-left: 20px;
+    }
+
+    &__owner {
+        font-size: 1.5em;
+    }
+
+    &__status {
+        color: $color-gray;
+        font-size: .9em;
+    }
+
+    &__progress-bar,
+    &__progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        opacity: 0;
+    }
+
+    &__progress-bar {
+        width: 100%;
+        transition: opacity $transition-progress-bar-show;
+        background-color: darken($color-light-gray, 15);
+    }
+
+    &__progress {
+        width: 40%;
+        transition: width $transition-progress-update, opacity $transition-progress-bar-show;
+        background-color: $color-brand;
+    }
+
+    &__remove-button {
+        display: flex;
+        position: relative;
+        align-items: stretch;
+    }
+
+    &__remove-button-caption {
+        display: block;
+        transform: scale(1) rotate(45deg);
+        transform-origin: 50% 50%;
+        transition: transform $transition-button-content-change, opacity $transition-button-content-change;
+        opacity: 1;
+        color: $color-gray;
+        font-size: 2.4rem;
+        font-weight: $font-weight-lighter;
+        will-change: transform, opacity;
+    }
+
+    &__remove-button-spinner {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 25px;
+        height: 25px;
+        margin-top: -12.5px;
+        margin-left: -12.5px;
+        transform-origin: 50% 50%;
+        transition: opacity $transition-button-content-change;
+        border: 2px solid transparent;
+        border-radius: 100%;
+        border-top-color: $color-gray;
+        opacity: 0;
+        will-change: opacity;
+    }
+
+    &--current {
+        color: $color-brand;
+
+        .agenda-event__time-end,
+        .agenda-event__status {
+            color: darken($color-gray, 15);
+        }
+
+        .agenda-event__progress-bar,
+        .agenda-event__progress {
+            opacity: 1;
+        }
+    }
+
+    &--in-progress {
+        .agenda-event__remove-button-caption {
+            transform: scale(0) rotate(360deg);
+            opacity: 0;
+        }
+
+        .agenda-event__remove-button-spinner {
+            animation: spinner .5s linear infinite;
+            opacity: 1;
+        }
+    }
+}

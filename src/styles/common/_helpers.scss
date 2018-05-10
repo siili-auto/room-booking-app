@@ -1,0 +1,17 @@
+@mixin clearfix {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin center-box($width: 300px, $height: 200px) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $width;
+    height: $height;
+    margin-top: -$height / 2;
+    margin-left: -$width / 2;
+}

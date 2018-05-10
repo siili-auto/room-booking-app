@@ -1,0 +1,174 @@
+swagger: '2.0'
+basePath: /
+schemes:
+  - http
+info:
+  title: Room Booking App API Documentation
+  version: 1.0.0
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: x-api-key
+    description: API key authorization
+    in: header
+tags: []
+paths:
+  /api/rooms:
+    get:
+      summary: Get list of all available rooms
+      operationId: getApiRooms
+      tags:
+        - Rooms
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/RoomList'
+          description: Successful
+  '/api/rooms/{room}/events':
+    get:
+      summary: Get all events for specific room
+      operationId: getApiRoomsRoomEvents
+      parameters:
+        - type: string
+          description: room unique name
+          name: room
+          in: path
+          required: true
+        - type: string
+          format: date
+          description: timeframe start date in ISO 8601 format
+          name: from
+          in: query
+          required: true
+        - type: string
+          format: date
+          description: timeframe end date in ISO 8601 format
+          name: to
+          in: query
+          required: true
+      tags:
+        - Events
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/EventList'
+          description: Successful
+    post:
+      summary: Create event for specific room
+      operationId: postApiRoomsRoomEvents
+      parameters:
+        - type: string
+          description: room unique name
+          name: room
+          in: path
+          required: true
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/EventCreateArgs'
+      tags:
+        - Events
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Event'
+          description: Successful
+  '/api/rooms/{room}/events/{event}':
+    delete:
+      summary: Cancel ongoing event
+      operationId: deleteApiRoomsRoomEventsEvent
+      parameters:
+        - type: string
+          description: room unique name
+          name: room
+          in: path
+          required: true
+        - type: string
+          description: event unique ID
+          name: event
+          in: path
+          required: true
+      tags:
+        - Events
+      responses:
+        default:
+          schema:
+            type: string
+          description: Successful
+definitions:
+  Room:
+    type: object
+    properties:
+      name:
+        type: string
+        description: room unique name
+        example: Conference Room 7
+    required:
+      - name
+  RoomList:
+    type: array
+    items:
+      $ref: '#/definitions/Room'
+  Event:
+    type: object
+    properties:
+      id:
+        type: string
+        description: event unique ID
+        example: 51e03fce-0fca-4072-99cb-9cf84e990d95
+      room:
+        type: string
+        description: room where event takes place
+        example: Conference Room 7
+      subject:
+        type: string
+        description: subject
+        example: Meeting with the customer
+      owner:
+        type: string
+        description: owner
+        example: John Doe
+      timeStart:
+        type: string
+        format: date
+        description: start date in ISO 8601 format
+        example: '2017-12-05T11:00:13.000Z'
+      timeEnd:
+        type: string
+        format: date
+        description: end date in ISO 8601 format
+        example: '2017-12-05T12:00:13.000Z'
+      type:
+        type: string
+        enum: [quick, regular]
+        description: >
+          event type:
+            * regular - regular event with organizer and subject
+            * quick - determines different display and if event can be deleted
+        example: quick | regular
+    required:
+      - id
+      - room
+      - subject
+      - owner
+      - timeStart
+      - timeEnd
+      - type
+  EventList:
+    type: array
+    items:
+      $ref: '#/definitions/Event'
+  EventCreateArgs:
+    type: object
+    properties:
+      startDate:
+        type: string
+        format: date
+        description: start date in ISO 8601 format
+      endDate:
+        type: string
+        format: date
+        description: end date in ISO 8601 format
+    required:
+      - startDate
+      - endDate

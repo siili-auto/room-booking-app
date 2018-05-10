@@ -1,0 +1,9 @@
+.idea
+*.iml
+.DS_Store
+node_modules
+design
+dist
+public
+coverage
+*.log

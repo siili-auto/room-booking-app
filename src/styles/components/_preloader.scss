@@ -1,0 +1,28 @@
+.preloader {
+    display: none;
+
+    &__overlay {
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $color-white;
+    }
+
+    &__box {
+        @include center-box(200px, 200px);
+        z-index: 101;
+    }
+
+    &__message {
+        color: $color-brand;
+        font-size: 2.5em;
+        text-align: center;
+    }
+
+    &--visible {
+        display: block;
+    }
+}
