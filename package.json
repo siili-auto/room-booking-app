@@ -1,6 +1,6 @@
 {
   "name": "room-booking-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Room Booking Application",
   "scripts": {
     "build": "rm -rf dist/* && node ./rba build ./demo-config/config.json dist",
