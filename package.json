@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "Room Booking Application",
   "scripts": {
-    "build": "rm -rf dist/* && node ./rba build ./demo-config/config.json dist",
+    "build": "rimraf dist/* && node ./rba build ./demo-config/config.json dist",
     "start": "node ./rba dev ./demo-config/config.json",
     "lint": "eslint webpack.config.* src tools rba",
     "lint:sass": "stylelint 'src/**/*.scss'",
@@ -80,6 +80,7 @@
     "redux-thunk": "2.1.0",
     "regenerator-runtime": "0.11.0",
     "reselect": "3.0.1",
+    "rimraf": "^2.6.3",
     "rxjs": "5.5.3",
     "sass-loader": "6.0.6",
     "sass-resources-loader": "1.3.1",
