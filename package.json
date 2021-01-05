@@ -31,7 +31,7 @@
     "rba": "./rba/index.js"
   },
   "dependencies": {
-    "axios": "0.19",
+    "axios": "0.21",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "8.0.0",
